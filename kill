@@ -1,0 +1,18 @@
+sudo pkill -f uwsgi -9
+
+启动运行uwsgi
+uwsgi  --ini  uwsgi.ini
+停止运行uwsgi，通过包含主进程编号的文件设置停止项目
+uwsgi --stop uwsgi.pid
+重启uwsgi
+uwsgi --reload uwsgi.pid
+
+
+uwsgi --http 0.0.0.0:8000 --file pygo/wsgi.py --static-map=/static=static
+
+
+
+pip freeze > pkg.txt
+将当前生产环境下 Python 的模块收集起来存放到 pkg.txt 文件里
+pip install -r pkg.txt
+在部署环境下降生产环境下的需要模块全部安装
